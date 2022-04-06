@@ -62,7 +62,7 @@ for UR5e:
 
 2. Start the `ret.urp` program on the UR5e Polyscope pendant
 
-3. Start the Button Press Detection application on the Raspberry Pi.
+3. Start the Button Press Detection application on the Raspberry Pi, **run with sudo to avoid GPIO runtime error**.
 
 4. The pendant may ask you to make the movement to starting position, press and hold the `Auto` option until it does. Then, press `Play` to start the loop.
 
@@ -80,7 +80,7 @@ for UR5e:
 
 ### Database structure
 
-#### now : two measurements with timestamp
+#### before : two measurements with timestamp
 - RET_Logs_<Datetime>
 |time|button::field|datetime::field|source::tag|
 |----|----|----|----|
@@ -96,7 +96,7 @@ for UR5e:
  2. (-) Tag value can't be selected alone, not able to show current working robot or the data source
  3. (-) Not enough for analysing error when one occurs: maybe data sent both from robot and rpi
 
-##### Suggesting: two measurement without timestamp
+##### now: two measurement without timestamp
 - RET_Logs
 |time|button::field|datetime::field|source::tag|source::field|button::tag|
 |----|----|----|----|----|----|
@@ -114,6 +114,13 @@ for UR5e:
  4. In Grafana, the where clause does not support field value
  5. (-) Not enough for analysing error when one occurs: maybe data sent both from robot and rpi 
 
+### GUI panel
+1. check grafana server status: `sudo service grafana-server status`
+2. if the server failed, restart by `sudo service grafana-server restart`
+3. open `localhost:3000` in browser and log in
+4. select RET_Panel
+
+![RET_Panel](./media/Screenshot%20from%202022-04-06%2015-22-48.png)
 
 ### TODOS
 
@@ -122,4 +129,5 @@ for UR5e:
 - [x] Test & update the application so that the same code works for UR5e and PRBT.
 - [x] Check the planning frame for ur for there's some pose difference between native_driver and ros_driver
 - [ ] Feature: automatically return ready pose when socket connection failed?
+- [x] Database structure
 
