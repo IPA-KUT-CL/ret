@@ -81,15 +81,17 @@ for UR5e:
 ### Database structure
 
 #### before : two measurements with timestamp
-- RET_Logs_<Datetime>
-|time|button::field|datetime::field|source::tag|
-|----|----|----|----|
-|server time|button NO.|time mashing the button|data source: robot / rpi|
+- RET_Logs_Datetime
 
-- RET_EVENTS_<Datetime>
-|time|description::field|type::tag|
-|----|----|----|
-|server time|event description|mismatch / timeout|
+    | time | button::field | datetime::field | source::tag |
+    | ---- | ---- | ---- | ---- |
+    | server time | button NO. | time mashing the button | data source: robot / rpi |
+
+- RET_EVENTS_Datetime
+
+    |time|description::field|type::tag|
+    |----|----|----|
+    |server time|event description|mismatch / timeout|
 
 - Comments:
  1. (-) When retrieving data for GUI, the measurement needs to be switched manuelly for each panel
@@ -98,14 +100,16 @@ for UR5e:
 
 ##### now: two measurement without timestamp
 - RET_Logs
-|time|button::field|datetime::field|source::tag|source::field|button::tag|
-|----|----|----|----|----|----|
-|server time|button NO.|time mashing the button|data source: robot / rpi|data source to be selected|button NO. for where clause|
+
+    |time|button::field|datetime::field|source::tag|source::field|button::tag|
+    |----|----|----|----|----|----|
+    |server time|button NO.|time mashing the button|data source: robot / rpi|data source to be selected|button NO. for where clause|
 
 - RET_EVENTS
-|time|description::field|type::tag|
-|----|----|----|----|
-|server time|event description|mismatch / timeout|
+  
+    |time|description::field|type::tag|
+    |----|----|----|
+    |server time|event description|mismatch / timeout|
 
 - Comments:
  1. No need to switch measurements everyday
