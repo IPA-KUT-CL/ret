@@ -40,8 +40,8 @@ Similarly, to run the mock test script, `./mock_test.py`  (Optional arg: name of
 
 ## RET Application
 
-To run with UR5e Robot, requires the [`ur_manipulation`](https://github.com/ipa-kut/ur_manipulation) and its dependencies to be in the same workspace.   
-To run with PRBT Robot, requires the [`ur_manipulation`](https://github.com/ipa-kut/ur_manipulation) and [`pilz_robots`](https://github.com/ipa-alb/pilz_robots) to be in the same workspace **Under debugging**
+To run with UR5e Robot, requires the [`ur_manipulation`](https://github.com/ipa-kut/ur_manipulation) package to be in the same workspace.   
+To run with PRBT Robot, requires the [`ur_manipualtion`](https://github.com/ipa-kut/ur_manipulation) and [`pilz_robots`](https://github.com/PilzDE/pilz_robots) in same workspace.
 
 ### Bringup (UR5e ROS Based test):
 
@@ -77,6 +77,20 @@ for UR5e:
 
 5. Launch ret application by `roslaunch ret ret_application robot:=prbt sim:=false`, add attribute `prompt:=true` if needed
 
+### Bringup (prbt)
+1. Connect pc with robot by both internet cable and USB, set the PCI connection to prbt with `IP: 169.254.60.100, Netmask: 255.255.255.0`, check the connection by `ping 169.254.60.100`
+   
+2. Set the can connection to robot by `sudo ip link set can0 up type can bitrate 1000000`, when reboot the robot, better to set the can down by `sudo ip link set can0 down` and bring it up again
+3. Start the RET Server script as described above
+
+4. launch the robot controller and rviz by `roslaunch prbt_moveit_config moveit_planning_execution.launch sim:=false pipeline:=ompl`
+
+5. Launch ret application by `roslaunch ret ret_application robot:=prbt sim:=false`, add attribute `prompt:=true` if needed
+
+### Simulation (prbt)
+prerequisites same as bringup prbt
+1. launch the robot controller and rviz by `roslaunch prbt_moveit_config moveit_planning_execution.launch sim:=true pipeline:=ompl`
+2. launch the ret application by `roslaunch ret ret_application robot:=prbt sim:=true`, add attribute `prompt:=true` if needed
 ### TODOS
 
 - [x] Update the RET Application code from the current simple square movement logic into the complete button masher logic
